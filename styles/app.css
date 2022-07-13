@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-slate-700;
+}
+
+.site-header {
+  @apply sticky w-full p-4;
+}
+
+.site-header > .wrapper {
+  @apply flex justify-between items-center p-4 bg-slate-50 border border-slate-200 max-w-6xl m-auto rounded-lg;
+}
+
+.site-logo h1 {
+  @apply font-black;
+}
+
+.site-nav {
+  @apply relative;
+}
+
+.site-nav .links {
+  @apply flex gap-4;
+}
+
+.links .link {
+  @apply underline;
+}
+
+.site-main {
+  @apply w-full p-4;
+}
+
+.site-main > .wrapper {
+  @apply max-w-7xl m-auto;
+}
