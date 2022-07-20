@@ -6,12 +6,26 @@ body {
   @apply text-slate-700;
 }
 
-.site-header {
-  @apply sticky w-full p-4;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
 }
 
-.site-header > .wrapper {
-  @apply flex justify-between items-center p-4 bg-slate-50 border border-slate-200 max-w-6xl m-auto rounded-lg;
+fieldset:disabled,  fieldset:disabled *{
+  @apply opacity-80 cursor-wait;
+}
+
+.site-header {
+  @apply sticky top-0 w-full p-4 bg-slate-50 border border-slate-200 z-20;
+  @apply bg-opacity-60 backdrop-blur-lg;
+}
+
+.site-header>.wrapper {
+  @apply flex justify-between items-center max-w-7xl m-auto rounded-lg;
 }
 
 .site-logo h1 {
@@ -22,18 +36,147 @@ body {
   @apply relative;
 }
 
-.site-nav .links {
+.links {
   @apply flex gap-4;
 }
 
-.links .link {
-  @apply underline;
+.link {
+  @apply text-sky-600;
 }
 
 .site-main {
-  @apply w-full p-4;
+  @apply w-full bg-fixed bg-cover min-h-screen;
+  background-image: url("/images/glare2.jpg");
 }
 
-.site-main > .wrapper {
+.site-section {
+  /* @apply p-4; */
+}
+
+.site-section>.wrapper {
   @apply max-w-7xl m-auto;
+}
+
+/* .profiles-section {
+  background-image: url("/images/glare2.jpg");
+} */
+
+.profiles-section {
+  @apply px-4;
+}
+
+.profiles-section .section-header {
+  @apply py-8 max-w-7xl m-auto;
+}
+
+.profiles-list {
+  @apply relative grid md:grid-cols-2 gap-4 py-8 max-w-[112rem] m-auto;
+}
+
+.profiles-list>* {
+  @apply relative;
+}
+
+.profiles-list::before {
+  @apply absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-center w-[calc(100vw-2rem)] z-0;
+  content: '';
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")
+}
+
+.profiles-list .profile-item {
+  @apply col-span-1;
+}
+
+.profile {
+  @apply text-sm p-6 h-full min-h-[14rem] bg-white bg-opacity-60 backdrop-blur-sm border-2 border-slate-200 rounded-xl;
+  @apply transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-600/20 hover:border-sky-600/30;
+}
+
+.profile.preview {
+  @apply text-xl;
+}
+.profile.preview .username{
+  @apply text-4xl;
+}
+.profile.preview .icon{
+  @apply w-6 h-6;
+}
+.profile.preview {
+  @apply hover:translate-y-0 hover:shadow-none;
+}
+.profile.preview .profile-content {
+  @apply justify-between gap-8;
+}
+
+.profile>.wrapper {
+  @apply grid grid-cols-9 gap-6 h-full;
+}
+
+.profile-pic-cont {
+  @apply col-span-2
+}
+
+.profile-pic {
+  @apply w-full aspect-w-1 aspect-h-1 rounded-full ring ring-sky-600 ring-offset-4;
+}
+
+.profile-pic img {
+  @apply object-cover rounded-full;
+}
+
+.profile-content {
+  @apply col-span-7 flex flex-col gap-2  h-full;
+}
+
+.profile-header .bio {
+  @apply whitespace-pre-wrap mt-2;
+}
+
+.profile-header .username {
+  @apply text-2xl
+}
+
+.profile-content .links {
+  @apply flex-wrap mt-2 gap-1 gap-x-4;
+}
+
+.profile-cont {
+  @apply p-4;
+}
+
+.profile-cont .actions{
+  @apply flex justify-end gap-4 py-4;
+}
+
+.icon {
+  @apply shrink-0 h-5 w-5;
+}
+
+.cta {
+  @apply transition-all px-4 py-2 bg-sky-600 text-blue-100 font-medium hover:-translate-y-1 hover:shadow-lg hover:shadow-sky-600/40 rounded-md;
+  @apply active:translate-y-0 active:shadow-none;
+}
+
+.form{
+  @apply w-full mt-8 bg-white border border-slate-200  shadow-2xl shadow-sky-600/20 max-w-3xl rounded-2xl;
+}
+
+.form .wrapper {
+  @apply flex flex-col gap-4 p-8;
+}
+
+.form-group {
+  @apply flex gap-4;
+}
+
+.form-control {
+  @apply flex flex-col gap-2 grow;
+}
+
+.form-input, .form-textarea {
+  @apply w-full bg-transparent border-slate-200 rounded-lg;
+}
+
+.w-icon {
+  @apply flex gap-2 items-center;
 }
