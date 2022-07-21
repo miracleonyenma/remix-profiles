@@ -102,10 +102,8 @@ export const updateProfile = async (data: ProfileData, token: string | undefined
   return response
 }
 
-// function to send forgot password email
+// function to send password reset email
 export const sendResetMail = async (email: string | File | null | undefined) => {
-  // console.log({ email, token });
-
   const response = await (await fetch(`${strapiApiUrl}/auth/forgot-password`, {
     method: "POST",
     headers: {
@@ -115,14 +113,11 @@ export const sendResetMail = async (email: string | File | null | undefined) => 
     body: JSON.stringify({ email })
   })).json()
 
-  // console.log({ response });
-
   return response
 }
 
+// function to reset password
 export const resetPass = async ({ password, passwordConfirmation, code }: { password: File | string | null | undefined, passwordConfirmation: File | string | null | undefined, code: File | string | null | undefined }) => {
-  console.log({ password, passwordConfirmation, code });
-
   const response = await (await fetch(`${strapiApiUrl}/auth/reset-password`, {
     method: "POST",
     headers: {
@@ -134,8 +129,6 @@ export const resetPass = async ({ password, passwordConfirmation, code }: { pass
       code
     })
   })).json()
-
-  console.log({ response });
 
   return response
 }

@@ -1,23 +1,27 @@
+// ./app/routes/reset-password.tsx
+
 import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
-import { resetPass, sendResetMail } from "~/models/profiles.server";
-import { getUserData, requireUser } from "~/utils/session.server";
+import { resetPass } from "~/models/profiles.server";
 
 type LoaderData = {
   code: string | undefined;
 };
 
+// get code from URL parameters
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
 
-  if (!code) return redirect("/");
+  // take user to homepage if there's no code in the url
+  if (!code) return redirect("/sign-in");
 
   return json<LoaderData>({
-    code,
+    code: code,
   });
 };
 
+// get password and code and send reset password request
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
 
@@ -27,10 +31,9 @@ export const action: ActionFunction = async ({ request }) => {
 
   const response = await resetPass({ password, passwordConfirmation, code });
 
-  console.log({ response });
-
+  // return error is passwords don't match
   if (password != passwordConfirmation) return json({ confirmPassword: "Passwords should match" });
-  // console.log({ response });
+
   return json(response);
 };
 
@@ -53,11 +56,10 @@ const ResetPass = () => {
             <div className="form-control">
               <label htmlFor="job-title">Password</label>
               <input id="password" name="password" type="password" className="form-input" required />
-              {/* {errors?.password ? <em className="text-red-600">{errors.password}</em> : null} */}
             </div>
             <div className="form-control">
               <label htmlFor="job-title">Confirm password</label>
-              <input id="confirmPassword" name="confirmPassword" type="confirmPassword" className="form-input" required />
+              <input id="confirmPassword" name="confirmPassword" type="password" className="form-input" required />
               {error?.confirmPassword ? <em className="text-red-600">{error.confirmPassword}</em> : null}
             </div>
             <div className="action-cont mt-4">

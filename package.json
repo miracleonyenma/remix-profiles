@@ -9,9 +9,12 @@
     "start": "remix-serve build"
   },
   "dependencies": {
+    "@netlify/functions": "^1.0.0",
+    "@remix-run/netlify": "*",
+    "cross-env": "^7.0.3",
+
     "@remix-run/node": "^1.6.4",
     "@remix-run/react": "^1.6.4",
-    "@remix-run/serve": "^1.6.4",
     "autoprefixer": "^10.4.7",
     "concurrently": "^7.2.2",
     "postcss": "^8.4.14",
@@ -23,6 +26,8 @@
     "@heroicons/react": "^1.0.6",
     "@remix-run/dev": "^1.6.4",
     "@remix-run/eslint-config": "^1.6.4",
+    "@remix-run/serve": "*",
+
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@types/react": "^17.0.45",

@@ -1,25 +1,15 @@
-import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
-import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import { ActionFunction, json } from "@remix-run/node";
+import { Form, useActionData, useTransition } from "@remix-run/react";
 import { sendResetMail } from "~/models/profiles.server";
-import { getUserData, requireUser } from "~/utils/session.server";
 
-// type LoaderData = {
-//   userData: Awaited<ReturnType<typeof getUserData>>;
-// };
 
-// export const loader: LoaderFunction = async ({ request }) => {
-//   return json<LoaderData>({
-//     userData: await requireUser(request),
-//   });
-// };
-
+// action function to get form values and run reset mail function
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const email = formData.get("email");
 
-  // const userData = await requireUser(request);
   const response = await sendResetMail(email);
-  // console.log({ response });
+
   return json(response);
 };
 
@@ -41,7 +31,6 @@ const ForgotPass = () => {
             <div className="form-control">
               <label htmlFor="email">Email</label>
               <input id="email" name="email" type="email" className="form-input" required />
-              {/* {errors?.password ? <em className="text-red-600">{errors.password}</em> : null} */}
             </div>
             <div className="action-cont mt-4">
               <button className="cta"> {transition.state == "submitting" ? "Sending" : "Send link"} </button>
